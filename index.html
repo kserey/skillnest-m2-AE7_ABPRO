@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 AutoFix</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <!-- STYLE -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0">
+            <div class="container">
+                <a class="navbar-brand" href="#">AutoFix</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="container mt-1 mb-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center">Bienvenido a AutoFix</h1>
+                    <h2 class="text-center">Reparación de Vehículos a Domicilio</h2>
+                </div>
+            </div>
+        </div>
+            
+        <div class="container">
+            <div id="services" class="row">
+            </div>
+        </div>
+
+
+        <!-- RESERVATION MODAL -->
+        <div class="modal fade" id="booking-modal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">Reservar para: <span id="modal-service-title"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="booking-form">
+                            <div class="row">
+
+                                <div class="col-6 mb-3">
+                                    <label for="name-input" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="name-input" required>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="phone-input" class="form-label">Teléfono:</label>
+                                    <input type="tel" class="form-control" id="phone-input" placeholder="+56 9 1234 5678" required>
+                                </div>
+
+                                <div class="col-12 mb-3">
+                                    <label for="address-input" class="form-label">Dirección:</label>
+                                    <input type="text" class="form-control" id="address-input" placeholder="Calle, Número, Casa/Depto." required>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="district-input" class="form-label">Comuna:</label>
+                                    <select class="form-select" id="district-select" required>
+                                    </select>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="region-input" class="form-label">Región</label>
+                                    <select class="form-select" id="region-select" required>
+                                        <option value="1">Metropolitana</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="date-input" class="form-label">Fecha de Reserva:</label>
+                                    <input type="date" class="form-control" id="date-input" required>
+                                </div>
+
+                                <div class="col-6 mb-3">
+                                    <label for="time-select" class="form-label">Hora de Reserva:</label>
+                                    <select class="form-select" id="time-select" required></select>
+                                </div>
+                            </div>
+
+                            <div class="d-grid mt-3">
+                                <button type="button" class="btn btn-primary mt-auto ms-auto" id="next-to-payment-btn">
+                                    <h5 class="mb-0">Siguiente</h5>
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- PAYMENT MODAL -->
+        <div class="modal fade" id="payment-modal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">Pago de Reserva para: <span id="modal-payment-title"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="payment-logo text-center">
+                            <img class="img-fluid logo" src="assets/img/webpay.png" alt="logo webpay">
+                        </div>
+
+                        <form id="payment-form">
+                            <div class="mb-2">
+                                <label for="card-number" class="form-label">Número de Tarjeta</label>
+                                <input type="text" class="form-control" id="card-number" placeholder="1234 1234 1234 1234" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <label for="expiry-date" class="form-label">Fecha de Vencimiento</label>
+                                    <input type="text" class="form-control" id="expiry-date" placeholder="MM/AA" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button type="submit" class="btn btn-success">Confirmar y Pagar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        
+        <!-- CONFIRMATION MODAL  -->
+        <div class="modal fade" id="confirmation-modal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">¡Reserva Confirmada!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="text-center fst-italic">
+                        <p>Tu reserva para el servicio de <span id="modal-confirmation-service"></span> el <span id="modal-confirmation-date"></span> ha sido confirmada</p>
+                    </div>
+                    <div class="modal-body" id="confirmation-details"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>     
+
+    </main>
+
+    <footer>
+      <div class="footer text-center bg-dark text-white py-1">
+        <p class="mb-0">Todos los derechos reservados.</p>
+        <span class="mb-0">Desarrollado por 
+            <a href="https://www.linkedin.com/in/irina-serey/" target="_blank" rel="noopener noreferrer" class="text-white">
+              <b>Irina Serey</b>
+            </a>
+          </span>
+      </div>
+      
+    </footer>
+
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- IMASK FOR INPUT MASK CREDIT CARD -->
+    <script src="https://unpkg.com/imask"></script>
+
+    <!-- JS -->
+    <script src="assets/js/script.js"></script>
+    
+</body>
+
+
+</html>

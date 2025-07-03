@@ -78,6 +78,8 @@ $(document).ready(function() {
     }
 
     // ------ FUNCTIONS ------
+
+    // CREATE SERVICE CARDS
     function generateServiceCards() {
         $servicesList.empty();
         services.forEach(service => {
@@ -97,6 +99,7 @@ $(document).ready(function() {
         });
     }
 
+    // POPULATE TIME SELECT
     function populateTimeSelect() {
         $timeSelect.append($('<option value="" disabled selected>Selecciona una hora...</option>'));
         hours.forEach(hour => {
@@ -107,6 +110,7 @@ $(document).ready(function() {
         });
     }
     
+    // POPULATE DISTRICT SELECT
     function populateDistrictSelect() {
         $districtSelect.append($('<option value="" disabled selected>Selecciona una comuna...</option>'));
         districts.forEach(district => {
@@ -120,6 +124,7 @@ $(document).ready(function() {
     populateTimeSelect();
     populateDistrictSelect();
 
+    // MIN BOOKING DATE => TOMORROW
     document.getElementById('date-input').min = new Date().toISOString().split("T")[0];
 
 
@@ -161,8 +166,11 @@ $(document).ready(function() {
         const bookingDate = $('#date-input').val();
         const bookingTime = $('#time-select').val();
 
+        const dateParts = bookingDate.split('-'); // Separa la fecha en [YYYY, MM, DD]
+        const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+
         $('#modal-confirmation-service').text(serviceName);
-        $('#modal-confirmation-date').text(`${bookingDate} a las ${bookingTime} hrs`);
+        $('#modal-confirmation-date').text(`${formattedDate} a las ${bookingTime} hrs`);
         
         paymentModal.hide();
         confirmationModal.show();

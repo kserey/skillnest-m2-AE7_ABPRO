@@ -42,7 +42,7 @@
 
 ### ✒️ Autor
 
-Proyecto desarrollado por **Irina Serey**.
+Proyecto desarrollado por [**Irina Serey**](https://www.linkedin.com/in/irina-serey/).
 
 ---
 
@@ -74,4 +74,4 @@ Proyecto desarrollado por **Irina Serey**.
 
 ### ✒️ Author
 
-Project developed by **Irina Serey**.
+Project developed by [**Irina Serey**](https://www.linkedin.com/in/irina-serey/).
